@@ -2,7 +2,6 @@ version: "3"
 
 services:
   api:
-    image: ptkweller/weller-airvisual
     build: ./api
     ports:
       - "5000:9090"
