@@ -1,17 +1,26 @@
-node {
-   def dockerComposePath = "/usr/local/bin"
+pipeline {
+    agent any 
 
-   stage('Preparation') {
-      git 'https://github.com/ptkweller/air-quality-api.git'
-   }
-   stage('Build') {
-      sh '${dockerComposePath}/docker-compose build'
-   }
-   stage('Test') {
-      sh '${dockerComposePath}/docker-compose run --rm --no-deps api go test -v'
-
-   }
-   stage('Deploy') {
-      sh 'echo hello'
-   }
+    stages {
+        stage('Preparation') { 
+            steps { 
+                git 'https://github.com/ptkweller/air-quality-api.git'
+            }
+        }
+        stage('Build'){
+            steps {
+                sh 'docker-compose build' 
+            }
+        }
+        stage('Test'){
+            steps {
+                sh 'docker-compose run --rm --no-deps api go test -v' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'make publish'
+            }
+        }
+    }
 }
