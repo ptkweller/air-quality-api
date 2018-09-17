@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'make publish'
+                sh 'echo hello'
             }
         }
     }
