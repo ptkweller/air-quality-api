@@ -1,7 +1,5 @@
 node {
-   environment {
-      dockerComposePath = "/usr/local/bin"
-   }
+   def dockerComposePath = "/usr/local/bin"
 
    stage('Preparation') {
       git 'https://github.com/ptkweller/air-quality-api.git'
