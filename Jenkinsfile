@@ -1,17 +1,16 @@
 node {
    environment {
-      PATH = "$PATH:/usr/local/bin"
+      dockerComposePath = "/usr/local/bin"
    }
 
    stage('Preparation') {
       git 'https://github.com/ptkweller/air-quality-api.git'
    }
    stage('Build') {
-      sh 'whoami'
-      sh 'docker-compose build'
+      sh '${dockerComposePath}/docker-compose build'
    }
    stage('Test') {
-      sh 'docker-compose run --rm --no-deps api go test -v'
+      sh '${dockerComposePath}/docker-compose run --rm --no-deps api go test -v'
 
    }
    stage('Deploy') {
