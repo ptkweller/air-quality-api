@@ -1,7 +1,8 @@
 node {
    environment {
-     PATH=$PATH:/usr/local/bin
+      PATH = "$PATH:/usr/local/bin"
    }
+
    stage('Preparation') {
       git 'https://github.com/ptkweller/air-quality-api.git'
    }
