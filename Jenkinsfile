@@ -1,6 +1,10 @@
 pipeline {
     agent any 
 
+    environment {
+      DOCKER_COMPOSE = "/usr/local/bin/docker-compose"
+    }
+
     stages {
         stage('Preparation') { 
             steps { 
@@ -9,12 +13,12 @@ pipeline {
         }
         stage('Build'){
             steps {
-                sh 'docker-compose build' 
+                sh '${DOCKER_COMPOSE} build' 
             }
         }
         stage('Test'){
             steps {
-                sh 'docker-compose run --rm --no-deps api go test -v' 
+                sh '${DOCKER_COMPOSE} run --rm --no-deps api go test -v' 
             }
         }
         stage('Deploy') {
