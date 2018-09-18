@@ -27,7 +27,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo "Deploying to server: ${params.serverIP}"'
+				sh "echo Deploying to server: ${params.region}"
+				sh "ssh ec2-user@${params.region} ls -al /data/"
             }
         }
     }
