@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     parameters {
-        string(defaultValue: "10.0.0.0", description: 'Server IP Address', name: 'serverIP')
+        string(defaultValue: "1.1.1.1", description: 'Server IP Address', name: 'serverIP')
     }
 
     environment {
@@ -27,8 +27,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-				sh "echo Deploying to server: ${params.region}"
-				sh "ssh ec2-user@${params.region} ls -al /data/"
+				sh "echo Deploying to server: ${params.serverIP}"
+				sh "ssh ec2-user@${params.serverIP} ls -al /data/"
             }
         }
     }
