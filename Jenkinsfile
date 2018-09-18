@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
 				sh "echo Deploying to server: ${params.serverIP}"
-				sh "ssh ec2-user@${params.serverIP} ls -al /data/"
+				sh "ssh ec2-user@${params.serverIP} /data/air-quality-api/airQualityApi.sh deploy"
             }
         }
     }
