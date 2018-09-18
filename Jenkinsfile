@@ -1,8 +1,12 @@
 pipeline {
     agent any 
 
+    parameters {
+        string(defaultValue: "10.0.0.0", description: 'Server IP Address', name: 'serverIP')
+    }
+
     environment {
-      DOCKER_COMPOSE = "/usr/local/bin/docker-compose"
+      dockerCompose = "/usr/local/bin/docker-compose"
     }
 
     stages {
@@ -13,17 +17,17 @@ pipeline {
         }
         stage('Build'){
             steps {
-                sh '${DOCKER_COMPOSE} build' 
+                sh '${dockerCompose} build' 
             }
         }
         stage('Test'){
             steps {
-                sh '${DOCKER_COMPOSE} run --rm --no-deps api go test -v' 
+                sh '${dockerCompose} run --rm --no-deps api go test -v' 
             }
         }
         stage('Deploy') {
             steps {
-                sh 'echo hello'
+                sh 'echo "Deploying to server: ${params.serverIP}"'
             }
         }
     }
