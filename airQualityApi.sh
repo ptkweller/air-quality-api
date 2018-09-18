@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
   echo "{dateTime} - No argument supplied." >> ${airQualityApiHome}/airQualityApi.log
   echo "{dateTime} - e.g. ./airQualityApi.sh start" >> ${airQualityApiHome}/airQualityApi.log
   echo "{dateTime} - e.g. ./airQualityApi.sh stop" >> ${airQualityApiHome}/airQualityApi.log
-  echo "{dateTime} - e.g. ./airQualityApi.sh deploy" >> ${airQualityApiHome}/airQualityApi.log
+  echo "{dateTime} - e.g. ./airQualityApi.sh restart" >> ${airQualityApiHome}/airQualityApi.log
   exit 1
 fi
 
@@ -30,12 +30,11 @@ then
   docker-compose down
   exit 0
 
-elif [ ${command} == "deploy" ]
+elif [ ${command} == "restart" ]
 then
-  ## Deploying API
-  echo "{dateTime} - Deploying API." >> ${airQualityApiHome}/airQualityApi.log
+  ## Restarting API
+  echo "{dateTime} - Restarting API." >> ${airQualityApiHome}/airQualityApi.log
   docker-compose down
-  git pull
   docker-compose up -d --build
   exit 0
 
