@@ -37,7 +37,7 @@ pipeline {
 				sh "ssh ec2-user@${params.serverIP} /data/air-quality-api/airQualityApi.sh stop"
 				sh "ssh ec2-user@${params.serverIP} rm -rf /data/air-quality-api/"
 				sh "ssh ec2-user@${params.serverIP} mkdir /data/air-quality-api/"
-				sh "aws s3 cp airQualityApi.zip s3://weller-airvisual/airQualityApi.zip --acl public-read"
+				sh "aws s3 cp airQualityApi.zip s3://weller-airvisual/airQualityApi.zip"
 				sh "ssh ec2-user@${params.serverIP} wget https://s3-eu-west-1.amazonaws.com/weller-airvisual/airQualityApi.zip -P /data/air-quality-api/"
 				sh "ssh ec2-user@${params.serverIP} unzip /data/air-quality-api/airQualityApi.zip -d /data/air-quality-api"
 				sh "ssh ec2-user@${params.serverIP} /data/air-quality-api/airQualityApi.sh start"
