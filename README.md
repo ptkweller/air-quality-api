@@ -42,20 +42,20 @@ Note: API request from user should be sent over HTTPS for additional security.
 ### Continuous Delivery
 The proposed Continuous Delivery pipeline for the Air Quality API would as follows:
 1. Developer commits code to repo which triggers the job.
-  1a. Jenkins pipeline Jenkinsfile to be used to allow developers to continue to maintain/update the process.
+   1. Jenkins pipeline Jenkinsfile to be used to allow developers to continue to maintain/update the process.
 2. Job checkouts code.
 3. Code is built/compiled.
 4. Docker-compose is started to run unit tests.
-  4a. Unit test results stored in SonarQube to track progress plus show overall code quality.
+   1. Unit test results stored in SonarQube to track progress plus show overall code quality.
 5. AMI is created
 6. AMI is applied to pre-production environment.
-  6a. DB scripts are applied using Liquibase.
+   1. DB scripts are applied using Liquibase.
 7. Automated smoke and load tests are ran on pre-production.
 8. Jenkins job waits for approval to push to production environment.
-  8a. QA engineers may need to run some manual tests before go-live.
+   1. QA engineers may need to run some manual tests before go-live.
 9. On approval AMI is applied to production.
-  9a. DB scripts are applied using Liquibase.
-  9b. Route53 is update to switch traffic to new version of the API.
+   1. DB scripts are applied using Liquibase.
+   2. Route53 is update to switch traffic to new version of the API.
 
 ### Tools
 The following tools could be introduced to help maintain the CD pipeline and overall infrastructure:
